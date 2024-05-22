@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p>Behandelingen</p>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Behandeling</th>
+                    <th scope="col">Prijs</th>
+                    <th scope="col">Maak afspraak</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for treatment in treatments %}
+                    <tr>
+                        <th scope="row">{{ treatment.name }}</th>
+                        <td>{{ treatment.price }}</td>
+                        <td><a href="{{ path('app_member_appointment_insert', {'id': treatment.id}) }}" class="btn btn-danger">Maak afspraak</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3">
+            </div>
+        </div>
+    </div>
+{% endblock %}

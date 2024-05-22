@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MemberController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Welkom {{ app.user.fname }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="fs-4">Bekijk al je medewerkers:</p>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Naam</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefoonnummer</th>
+                    <th scope="col">iban</th>
+                    <th scope="col">Annuleren</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for employee in employees %}
+                    <tr>
+                        <th scope="row">{{ employee.fname }}</th>
+                        <td>{{ employee.email }}</td>
+                        <td>{{ employee.phoneNumber }}</td>
+                        <td>{{ employee.iban }}</td>
+                        <td><a class="btn btn-danger" href="{{ path('app_admin_employee_delete', {'id': employee.id}) }}">Annuleren</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="{{ path('app_admin_employee_insert') }}" class="btn btn-success">Medewerker toevoegen</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MemberController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Welkom {{ app.user.fname }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="fs-4">Bekijk al je afspraken:</p>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Behandeling</th>
+                    <th scope="col">Kapster</th>
+                    <th scope="col">Datum</th>
+                    <th scope="col">Tijd</th>
+                    <th scope="col">Aanpassen</th>
+                    <th scope="col">Annuleren</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for appointment in appointments %}
+                    <tr>
+                        <th scope="row">{{ appointment.treatment.name }}</th>
+                        <td>{{ appointment.barber.fname }}</td>
+                        <td>{{ appointment.date|date('d-m-Y') }}</td>
+                        <td>{{ appointment.time|date('H:i') }}</td>
+                        <td><a class="btn btn-warning" href="{{ path('app_member_appointment_update', {'id': appointment.id}) }}">Aanpassen</a></td>
+                        <td><a class="btn btn-danger" href="{{ path('app_member_appointment_delete', {'id': appointment.id}) }}">Annuleren</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

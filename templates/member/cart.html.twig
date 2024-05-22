@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {% for purchase_line in purchase_lines %}
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ purchase_line.product.name }}</h5>
+                        <p class="card-text">{{ purchase_line.quantity }}</p>
+                        <a href="{{ path('app_member_cart_clear') }}" class="btn btn-primary">Maak winkelwagen leeg</a>
+                        <a href="{{ path('app_member_cart_order') }}" class="btn btn-primary">Bestel</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
